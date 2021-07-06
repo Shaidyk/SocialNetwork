@@ -1,1 +1,1 @@
-web: gunicorn WebHookTgBot.wsgi
+web: gunicorn SocialNetwork.wsgi
