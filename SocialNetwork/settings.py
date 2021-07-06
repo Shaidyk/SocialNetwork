@@ -73,11 +73,11 @@ else:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'HOST': 'ec2-54-74-35-87.eu-west-1.compute.amazonaws.com',
+            'HOST': 'ec2-34-242-89-204.eu-west-1.compute.amazonaws.com',
             'PORT': '5432',
-            'NAME': 'd2i4fmg0ajt6o8',
-            'USER': 'hejsrwodvmesqb',
-            'PASSWORD': '09ee3b590641fc92d33d90e125c5c5caab47fb3dfbd62f11dae21fb5286347dd',
+            'NAME': 'dcjvc8j2um850r',
+            'USER': 'ihvtdzmmiiwped',
+            'PASSWORD': 'f750be8096902acac9d582e47085ffd8dc9e070eadbc5ff0d198b1d2c05c4d5d',
 
         }
     }
@@ -130,7 +130,7 @@ if not DEBUG:
     from sentry_sdk.integrations.django import DjangoIntegration
 
     sentry_sdk.init(
-        dsn="https://1dcad8cb04734b55ab67e9458854f243@o912374.ingest.sentry.io/5849350",
+        dsn="https://4d383e1f3145445d9e1143ef229dd3be@o913388.ingest.sentry.io/5851301",
         integrations=[DjangoIntegration()],
         send_default_pii=True
     )

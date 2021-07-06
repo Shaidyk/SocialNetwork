@@ -9,7 +9,7 @@ import random
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    first_name = models.CharField(max_length=50)
+    first_name = models.CharField(max_length=50, default='user__username')
     last_name = models.CharField(max_length=50, null=True, blank=True)
     nick = models.CharField(max_length=50, null=True, blank=True)
     email = models.EmailField()
