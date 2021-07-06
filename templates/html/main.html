@@ -1,0 +1,13 @@
+{% extends "html/_base.html" %}
+{% load static %}
+{% block title %} Main {% endblock %}
+
+{% block navbar %}{% endblock navbar %}
+
+{% block content %}
+    {% for user in users %}
+        <p>{{ user.first_name }}</p>
+        <p>{{ user.last_name }}</p>
+        <img src="{% static user.photo.image.url %}" alt="">
+    {% endfor %}
+{% endblock content %}
