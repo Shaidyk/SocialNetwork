@@ -5,9 +5,13 @@
 {% block navbar %}{% endblock navbar %}
 
 {% block content %}
-    {% for user in users %}
-        <p>{{ user.first_name }}</p>
-        <p>{{ user.last_name }}</p>
+    {% if request.user.is_authenticated %}
+        <p>{{ user.nick }}</p>
         <img src="{% static user.photo.image.url %}" alt="">
-    {% endfor %}
+        <p>{{ user.first_name }} {{ user.last_name }}</p>
+        <a href="{% url 'edit' %}">Edit profile</a>
+    {% else %}
+        <h1>You must be authenticated</h1>
+    {% endif %}
+
 {% endblock content %}

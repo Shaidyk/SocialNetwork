@@ -9,7 +9,7 @@ import random
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    first_name = models.CharField(max_length=50, default='user__username')
+    first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50, null=True, blank=True)
     nick = models.CharField(max_length=50, null=True, blank=True)
     email = models.EmailField()
@@ -22,12 +22,9 @@ class Profile(models.Model):
     user_custom_id = models.BigIntegerField(unique=True, default=random.randint(10000000, 99999999))
 
     @receiver(post_save, sender=User)
-    def create_user_profile(sender, instance, created, **kwargs):
+    def update_user_profile(sender, instance, created, **kwargs):
         if created:
             Profile.objects.create(user=instance)
-
-    @receiver(post_save, sender=User)
-    def save_user_profile(sender, instance, **kwargs):
         instance.profile.save()
 
     @property
