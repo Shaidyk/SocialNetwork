@@ -8,7 +8,7 @@ import random
 
 
 class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50, null=True, blank=True)
     nick = models.CharField(max_length=50, null=True, blank=True)
@@ -16,16 +16,17 @@ class Profile(models.Model):
 
     photo = models.ForeignKey('Photo', on_delete=models.CASCADE, null=True, blank=True)
     video = models.ForeignKey('Video', on_delete=models.CASCADE, null=True, blank=True)
-    # TODO friends
+    friends = models.ManyToManyField(User, blank=True, related_name='friends')
 
-    token = models.CharField(max_length=50, unique=True, default=str(uuid.uuid4()))
-    user_custom_id = models.BigIntegerField(unique=True, default=random.randint(10000000, 99999999))
+    token = models.CharField(max_length=50, unique=True, blank=True)
+    user_custom_id = models.BigIntegerField(unique=True, blank=True)
 
     @receiver(post_save, sender=User)
     def update_user_profile(sender, instance, created, **kwargs):
         if created:
-            Profile.objects.create(user=instance)
-        instance.profile.save()
+            if sender.__name__ == 'User':
+                Profile.objects.create(user=instance)
+        # instance.profile.save()
 
     @property
     def get_token(self):
@@ -51,9 +52,16 @@ class Profile(models.Model):
                f'{self.user_custom_id}'
 
 
+class FriendRequest(models.Model):
+    from_user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='from_user')
+    to_user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='to_user')
+
+
 def first_name_creator(sender, instance, *args, **kwargs):
     if not instance.first_name:
         instance.first_name = instance.user.username
+        instance.token = str(uuid.uuid4())
+        instance.user_custom_id = random.randint(10000000, 99999999)
 
 
 pre_save.connect(first_name_creator, sender=Profile)

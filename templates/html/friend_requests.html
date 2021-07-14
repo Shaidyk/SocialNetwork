@@ -1,15 +1,11 @@
 {% extends "html/_base.html" %}
 {% load static %}
-{% block title %} Main {% endblock %}
+{% block title %} All {% endblock %}
 
 {% block navbar %}{% endblock navbar %}
 
 {% block content %}
     {% if request.user.is_authenticated %}
-        <p>{{ user.nick }}</p>
-        <img src="{% static user.photo.image.url %}" alt="">
-        <p>{{ user.first_name }} {{ user.last_name }}</p>
-        <a href="{% url 'edit' %}">Edit profile</a>
         {% for friend_request in all_friend_requests %}
             <h2>{{ friend_request.from_user }}
                 <a href="http://127.0.0.1:8000/accept_friend_request/{{ friend_request.id }}">Add</a>

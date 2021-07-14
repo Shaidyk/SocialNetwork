@@ -7,7 +7,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'django-insecure-@1h)wnms%@t%!11tx^ap+i=gi8swu26%#hinorrj*5&r4@eys&'
 
 DEBUG = os.environ.get('DEBUG', '0') == '1'
-# DEBUG = True
+DEBUG = True
 ALLOWED_HOSTS = ['*']
 
 MAIN_DOMAIN = '127.0.0.1:8000' if DEBUG else 'bestsocialnetwork.herokuapp.com/'

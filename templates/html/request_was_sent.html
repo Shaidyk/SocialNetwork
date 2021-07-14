@@ -1,0 +1,14 @@
+{% extends "html/_base.html" %}
+{% load static %}
+{% block title %} All {% endblock %}
+
+{% block navbar %}{% endblock navbar %}
+
+{% block content %}
+    {% if request.user.is_authenticated %}
+        <p>friend request was already sent</p>
+    {% else %}
+        <h1>You must be authenticated</h1>
+    {% endif %}
+
+{% endblock content %}

@@ -10,5 +10,8 @@ class ProfileAdmin(admin.ModelAdmin):
         'last_name',
         'nick',
         'email',
-        'user_custom_id'
+    ]
+
+    filter_horizontal = [
+        'friends'
     ]
