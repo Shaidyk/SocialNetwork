@@ -5,18 +5,13 @@
 {% block navbar %}{% endblock navbar %}
 
 {% block content %}
-    {% if request.user.is_authenticated %}
-        <p>{{ user.nick }}</p>
+        <p>{{ user.first_name }} {{ user.nick }} {{ user.last_name }}</p>
         <img src="{% static user.photo.image.url %}" alt="">
-        <p>{{ user.first_name }} {{ user.last_name }}</p>
+        <br>
         <a href="{% url 'edit' %}">Edit profile</a>
         {% for friend_request in all_friend_requests %}
             <h2>{{ friend_request.from_user }}
                 <a href="{% url 'accept_friend_request' friend_request.id %}">Add</a>
             </h2>
         {% endfor %}
-    {% else %}
-        <h1>You must be authenticated</h1>
-    {% endif %}
-
 {% endblock content %}

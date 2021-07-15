@@ -5,6 +5,8 @@ from SocialNetwork.models.profile import Profile
 
 
 def edit_profile_view(request):
+    if not request.user.is_authenticated:
+        return redirect('authenticate')
     if request.method == 'POST':
         form = UploadForm(request.POST, request.FILES)
         if form.is_valid():

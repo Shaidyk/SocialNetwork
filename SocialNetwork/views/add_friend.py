@@ -1,8 +1,5 @@
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.models import User
-from django.http import HttpResponse
-from django.shortcuts import render
-from django.contrib.auth import authenticate
+from django.shortcuts import render, redirect
 
 from SocialNetwork.models.profile import Profile, FriendRequest
 
@@ -20,16 +17,18 @@ def send_request_user(request, userID):
 
 @login_required
 def accept_friend_request(request, requestID):
-    friend_reques = FriendRequest.objects.get(id=requestID)
-    if friend_reques.to_user == request.user:
-        friend_reques.to_user.friends.add(friend_reques.from_user.profile)
-        friend_reques.from_user.friends.add(friend_reques.to_user.profile)
-        friend_reques.delete()
-        return HttpResponse('Request accept')
+    friend_request = FriendRequest.objects.get(id=requestID)
+    if friend_request.to_user == request.user:
+        friend_request.to_user.friends.add(friend_request.from_user.profile)
+        friend_request.from_user.friends.add(friend_request.to_user.profile)
+        friend_request.delete()
+        return redirect('main')
     else:
-        return HttpResponse('Request decline')
+        return redirect('main')
 
 
 def all_users(request):
+    if not request.user.is_authenticated:
+        return redirect('authenticate')
     profile = Profile.objects.all().exclude(user__id=request.user.id)
     return render(request, 'html/all.html', context={'users': profile})

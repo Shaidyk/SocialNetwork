@@ -1,9 +1,11 @@
 {% extends "html/_base.html" %}
 {% load static %}
-{% block title %} All {% endblock %}
+{% block title %} Main {% endblock %}
 
 {% block navbar %}{% endblock navbar %}
 
 {% block content %}
-        <p>friend request sent</p>
+        {% for friend in friend_list %}
+            <p>{{ friend }}</p>
+        {% endfor %}
 {% endblock content %}

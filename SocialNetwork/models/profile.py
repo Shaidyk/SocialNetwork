@@ -3,6 +3,7 @@ from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.db.models.signals import pre_save
+
 import uuid
 import random
 
@@ -26,7 +27,6 @@ class Profile(models.Model):
         if created:
             if sender.__name__ == 'User':
                 Profile.objects.create(user=instance)
-        # instance.profile.save()
 
     @property
     def get_token(self):

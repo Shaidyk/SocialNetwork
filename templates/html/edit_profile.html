@@ -5,7 +5,6 @@
 {% block navbar %}{% endblock navbar %}
 
 {% block content %}
-    {% if request.user.is_authenticated %}
         <h2>Register</h2>
         <form method="post">
             {% csrf_token %}
@@ -23,8 +22,4 @@
             {% endfor %}
             <button type="submit">Registration</button>
         </form>
-    {% else %}
-        <h1>You must be authenticated</h1>
-    {% endif %}
-
 {% endblock content %}

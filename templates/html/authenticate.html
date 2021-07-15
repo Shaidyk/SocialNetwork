@@ -1,0 +1,20 @@
+{% extends "html/_base.html" %}
+{% load static %}
+{% block title %} Main {% endblock %}
+
+{% block navbar %}{% endblock navbar %}
+
+{% block content %}
+   <div class="center-block">
+            <div class="row">
+                <div class="is-not-auth">
+                    <a href="{% url 'register' %}" class="a-is-not-auth">Register</a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="is-not-auth">
+                    <a href="{% url 'login' %}" class="a-is-not-auth">Log-In</a>
+                </div>
+            </div>
+        </div>
+{% endblock content %}
