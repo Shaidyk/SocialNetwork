@@ -11,6 +11,7 @@ from SocialNetwork.views.edit_profile import edit_profile_view
 from SocialNetwork.views.add_friend import send_request_user, accept_friend_request, all_users
 from SocialNetwork.views.friends import friends_view
 from SocialNetwork.views.authenticate import authenticate_view
+from SocialNetwork.views.photo import photo_view
 
 
 urlpatterns = [
@@ -25,6 +26,7 @@ urlpatterns = [
     path('send_request_user/<int:userID>/', send_request_user, name='send_request_user'),
     path('accept_friend_request/<int:requestID>/', accept_friend_request, name='accept_friend_request'),
     path('friends/', friends_view, name='friends_view'),
+    path('photo/', photo_view, name='photo_view'),
 ]
 
 if settings.DEBUG:

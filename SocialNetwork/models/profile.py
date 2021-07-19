@@ -15,7 +15,7 @@ class Profile(models.Model):
     nick = models.CharField(max_length=50, null=True, blank=True)
     email = models.EmailField()
 
-    photo = models.ForeignKey('Photo', on_delete=models.CASCADE, null=True, blank=True)
+    photo = models.ManyToManyField('Photo', blank=True, related_name='photo')
     video = models.ForeignKey('Video', on_delete=models.CASCADE, null=True, blank=True)
     friends = models.ManyToManyField(User, blank=True, related_name='friends')
 

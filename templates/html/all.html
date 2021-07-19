@@ -5,12 +5,27 @@
 {% block navbar %}{% endblock navbar %}
 
 {% block content %}
-        {% for user in users %}
-            {% if not request.user in user.friends.select_related %}
-                <p>{{ user.nick }}</p>
-                <img src="{% static user.photo.image.url %}" alt="">
-                <p>{{ user.first_name }} {{ user.last_name }}</p>
-                <a href="{% url 'send_request_user' user.user.id %}">Add {{ user.first_name }} {{ user.user.id }}</a>
-            {% endif %}
-        {% endfor %}
+    {% for user in users %}
+        {% if not request.user in user.friends.select_related %}
+            <div class="my3">
+                <div class="row mt-3 pt-3">
+                    <div class="card border-1">
+                        <div class="card-body bg-light">
+                            <p>{{ user.first_name }}</p>
+                            {% for photo in user.photo.all %}
+                                {% if photo.is_avatar %}
+                                    <img src="{% static photo.image.url %}" alt="">
+                                {% endif %}
+                            {% endfor %}
+                            <p>{{ user.first_name }} {{ user.nick }} {{ user.last_name }}</p>
+                            <div class="offset-md-4">
+                                <a class="btn btn-block btn-primary"
+                                   href="{% url 'send_request_user' user.user.id %}">Add {{ user.first_name }}</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    {% endfor %}
 {% endblock content %}

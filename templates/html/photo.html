@@ -1,0 +1,23 @@
+{% extends "html/_base.html" %}
+{% load static %}
+{% block title %} Main {% endblock %}
+
+{% block navbar %}{% endblock navbar %}
+
+{% block content %}
+    {% for photo in photos %}
+        <div class="my3">
+            <div class="row mt-3 pt-3">
+                <div class="card border-1">
+                    <div class="card-body bg-light">
+                        <p>{{ photo.title }}</p>
+                        <img src="{% static photo.image.url %}" alt="">
+                        {% if photo.description %}
+                            <p>{{ photo.description }}</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock content %}

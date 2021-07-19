@@ -5,16 +5,20 @@
 {% block navbar %}{% endblock navbar %}
 
 {% block content %}
-   <div class="center-block">
+    <div class="center-block">
+        <div class="is-not-auth"></div>
+        <div class="mt-5">
             <div class="row">
-                <div class="is-not-auth">
-                    <a href="{% url 'register' %}" class="a-is-not-auth">Register</a>
-                </div>
-            </div>
-            <div class="row">
-                <div class="is-not-auth">
-                    <a href="{% url 'login' %}" class="a-is-not-auth">Log-In</a>
-                </div>
+                <a class="btn btn-primary border-2 btn-lg btn-block p-lg-4"
+                   href="{% url 'register' %}"
+                   style="border-color: darkblue">Register</a>
             </div>
         </div>
+        <div class="mt-5">
+            <div class="row">
+                <a class="btn btn-primary border-2 btn-lg btn-block p-lg-4" href="{% url 'login' %}"
+                   style="border-color: darkblue">Log-In</a>
+            </div>
+        </div>
+    </div>
 {% endblock content %}

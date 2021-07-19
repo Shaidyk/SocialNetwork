@@ -13,5 +13,6 @@ class ProfileAdmin(admin.ModelAdmin):
     ]
 
     filter_horizontal = [
-        'friends'
+        'friends',
+        'photo'
     ]

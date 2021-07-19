@@ -5,7 +5,22 @@
 {% block navbar %}{% endblock navbar %}
 
 {% block content %}
-        {% for friend in friend_list %}
-            <p>{{ friend }}</p>
-        {% endfor %}
+    {% for friend in friend_list %}
+        {% if not request.user in user.friends.select_related %}
+            <div class="my3">
+                <div class="row mt-3 pt-3">
+                    <div class="card border-1">
+                        <div class="card-body bg-light">
+                            <p>{{ friend.first_name }} {{ friend.nick }} {{ friend.last_name }}</p>
+                            {% for photo in friend.profile.photo.all %}
+                                {% if photo.is_avatar %}
+                                    <img src="{% static photo.image.url %}" alt="">
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    {% endfor %}
 {% endblock content %}

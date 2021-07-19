@@ -39,12 +39,12 @@ class LoginForm(AuthenticationForm):
 
 class UploadForm(forms.ModelForm):
     title = forms.CharField(max_length=50)
-    image = forms.ImageField()
-    description = forms.CharField(widget=forms.Textarea)
-    is_avatar = forms.BooleanField()
+    image = forms.ImageField(required=False)
+    description = forms.CharField(widget=forms.Textarea, required=False)
+    is_avatar = forms.BooleanField(required=False)
 
     class Meta:
-        model = Profile
+        model = Photo
         fields = (
             'title',
             'image',

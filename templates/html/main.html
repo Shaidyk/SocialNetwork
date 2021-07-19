@@ -5,13 +5,14 @@
 {% block navbar %}{% endblock navbar %}
 
 {% block content %}
-        <p>{{ user.first_name }} {{ user.nick }} {{ user.last_name }}</p>
-        <img src="{% static user.photo.image.url %}" alt="">
-        <br>
-        <a href="{% url 'edit' %}">Edit profile</a>
-        {% for friend_request in all_friend_requests %}
-            <h2>{{ friend_request.from_user }}
-                <a href="{% url 'accept_friend_request' friend_request.id %}">Add</a>
-            </h2>
-        {% endfor %}
+    <p>{{ user.first_name }} {{ user.nick }} {{ user.last_name }}</p>
+    <img src="{% static avatar.image.url %}" alt="">
+    <div class="mt-3">
+        <a class="btn btn-block btn-primary" href="{% url 'edit' %}">Edit profile</a>
+    </div>
+    {% for friend_request in all_friend_requests %}
+        <h2>{{ friend_request.from_user }}
+            <a class="btn btn-block btn-primary" href="{% url 'accept_friend_request' friend_request.id %}">Add</a>
+        </h2>
+    {% endfor %}
 {% endblock content %}

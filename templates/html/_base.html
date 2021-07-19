@@ -29,7 +29,7 @@
             <div class="nav navbar-nav navbar-brand">
                 <a class="nav-link active" href="http://127.0.0.1:8000/admin">admin</a>
                 <a class="nav-link active" href="{% url 'all_users' %}">All users</a>
-                <span class="navbar-text position-absolute start-50">
+                <span class="navbar-text center-block">
                 My social network
             </span>
             </div>
@@ -61,7 +61,7 @@
                     <a href="{% url 'friends_view' %}">Friends</a>
                 </div>
                 <div id="btn-menu">
-                    <a href="">Photo</a>
+                    <a href="{% url 'photo_view' %}">Photo</a>
                 </div>
                 <div id="btn-menu">
                     <a href="">Video</a>
@@ -78,20 +78,6 @@
             {% block content %}{% endblock content %}
         </div>
     </div>
-{#    {% if not request.user.is_authenticated %}#}
-{#        <div class="center-block">#}
-{#            <div class="row">#}
-{#                <div class="is-not-auth">#}
-{#                    <a href="{% url 'register' %}" class="a-is-not-auth">Register</a>#}
-{#                </div>#}
-{#            </div>#}
-{#            <div class="row">#}
-{#                <div class="is-not-auth">#}
-{#                    <a href="{% url 'login' %}" class="a-is-not-auth">Log-In</a>#}
-{#                </div>#}
-{#            </div>#}
-{#        </div>#}
-{#    {% endif %}#}
 </div>
 </body>
 </html>
