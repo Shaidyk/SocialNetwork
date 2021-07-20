@@ -59,7 +59,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'SocialNetwork.wsgi.application'
 
-
 if DEBUG:
     DATABASES = {
         'default': {
@@ -125,7 +124,6 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-
 if not DEBUG:
     import sentry_sdk
     from sentry_sdk.integrations.django import DjangoIntegration
@@ -134,4 +132,15 @@ if not DEBUG:
         dsn="https://4d383e1f3145445d9e1143ef229dd3be@o913388.ingest.sentry.io/5851301",
         integrations=[DjangoIntegration()],
         send_default_pii=True
+    )
+
+CLOUDINARY_URL = 'cloudinary://483484343543471:EyujnoxiG31JHITUvNiDDK74jwY@reaper'
+if not DEBUG:
+    import cloudinary
+
+    cloudinary.config(
+        cloud_name="reaper",
+        api_key="483484343543471",
+        api_secret="EyujnoxiG31JHITUvNiDDK74jwY",
+        secure=True
     )

@@ -15,7 +15,7 @@ def register_view(request):
             user.profile.last_name = form.cleaned_data.get('last_name')
             user.profile.nick = form.cleaned_data.get('nick')
             user.profile.email = form.cleaned_data.get('email')
-            user.save()
+            user.profile.save()
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=user.username, password=raw_password)
             login(request, user)

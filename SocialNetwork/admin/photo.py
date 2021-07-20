@@ -6,7 +6,7 @@ from SocialNetwork.models.photo import Photo
 @admin.register(Photo)
 class PhotoAdmin(admin.ModelAdmin):
     list_display = [
-        'image',
         'title',
+        'image',
         'is_avatar',
     ]
