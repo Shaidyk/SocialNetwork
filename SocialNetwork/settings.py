@@ -133,14 +133,3 @@ if not DEBUG:
         integrations=[DjangoIntegration()],
         send_default_pii=True
     )
-
-CLOUDINARY_URL = 'cloudinary://483484343543471:EyujnoxiG31JHITUvNiDDK74jwY@reaper'
-if not DEBUG:
-    import cloudinary
-
-    cloudinary.config(
-        cloud_name="reaper",
-        api_key="483484343543471",
-        api_secret="EyujnoxiG31JHITUvNiDDK74jwY",
-        secure=True
-    )
